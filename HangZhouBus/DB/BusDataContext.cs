@@ -21,7 +21,8 @@ namespace HangZhouBus.DB
         public Table<LineItem> LineTable;
 
         public BusDataContext()
-            : base("Data Source=appdata:/Assets/" + DBName + ";File Mode=read only;") //base("Data Source=isostore:/" + DBName)
+            : base("Data Source=appdata:/Assets/" + DBName + ";File Mode=read only;")
+            //: base("Data Source=isostore:/" + DBName)
         {
         }
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangZhouBus", "HangZhouBus\HangZhouBus.csproj", "{8FD88527-7B68-4946-B29F-628DA592F142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPhoneUtil", "..\..\dxy\wp7家庭用药\WindowsPhoneUtil\WindowsPhoneUtil\WindowsPhoneUtil.csproj", "{E7DC8F51-F8D3-46AF-BB4D-2933A7B99430}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPhoneUtil", "D:\dxy\wp7家庭用药\WindowsPhoneUtil\WindowsPhoneUtil\WindowsPhoneUtil.csproj", "{E7DC8F51-F8D3-46AF-BB4D-2933A7B99430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

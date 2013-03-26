@@ -15,9 +15,7 @@
 
     <Grid>
         <Button Name="button" Content="开始" HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Click="button_Click" />
-        <ProgressBar HorizontalAlignment="Left" Margin="49,70,0,0" Name="progressBar" VerticalAlignment="Top" Width="300" Visibility="Collapsed"/>
-        <TextBlock Name="textBlock" FontSize="24" Margin="354,54,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ListBox Margin="25,100,25,0" Name="listBox" VerticalAlignment="Top">
+        <ListBox Margin="25,80,25,0" Name="listBox" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" FontSize="30" Foreground="White" Margin="0,0,0,30"/>

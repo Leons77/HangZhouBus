@@ -1,0 +1,59 @@
+﻿<local:BasePage
+    xmlns:local="clr-namespace:HangZhouBus"
+    x:Class="HangZhouBus.BusLinePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <Grid Margin="25,0">
+        <TextBlock Name="tbkName" Margin="0,14,0,0" FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Name="tbkPrice" Margin="0,88,0,0" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <ListBox Name="listBox" Margin="0,147,0,0" SelectionChanged="listBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,0,20">
+                        <Border Width="430" BorderBrush="White" BorderThickness="3">
+                            <StackPanel>
+                                <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Run Text="首班："/>
+                                    <Run Text="{Binding StartTime}"/>
+                                    <Run Text="      末班："/>
+                                    <Run Text="{Binding EndTime}"/>
+                                </TextBlock>
+                                <TextBlock Margin="10,10,0,10" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Run Text="往  "/>
+                                    <Run Text="{Binding LastStop}" FontSize="30"/>
+                                    <Run Text="  方向"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ListBox Margin="0,20,0,0" ItemsSource="{Binding StopList}" Tag="{Binding Type}" Visibility="{Binding IsVisible, Converter={StaticResource Bool2VisibilityConverter}}" SelectionChanged="ListBox_SelectionChanged_1">
+                            <ListBox.Template>
+                                <ControlTemplate>
+                                    <ItemsPresenter />
+                                </ControlTemplate>
+                            </ListBox.Template>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" Margin="0,0,0,12" FontSize="30"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
+</local:BasePage>

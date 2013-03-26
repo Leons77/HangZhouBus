@@ -16,13 +16,13 @@ namespace HangZhouBus.DB
 {
     public class DBBuild
     {
-        private const string Api2 = "http://www.hzbus.cn/Page/LineSearch.aspx";
+        //官方车ID数
+        private int count = 700;
 
         private BusDataContext db;
 
         private int i;
         private int j;
-        private int count;
 
         private int k;
         private int n;
@@ -67,7 +67,7 @@ namespace HangZhouBus.DB
             db = new BusDataContext();
         }
 
-        public void Build(int count)
+        public void Build()
         {
             if (db.DatabaseExists())
             {
@@ -78,7 +78,6 @@ namespace HangZhouBus.DB
 
             i = 1;
             j = 1;
-            this.count = count;
 
             SubmitApi1Request();
         }
@@ -166,13 +165,20 @@ namespace HangZhouBus.DB
 
         private void SubmitApi2Request()
         {
-            if (k > n) return;
+            if (k > n)
+            {
+                //完成了
+                OnMessage("Done");
+                return;
+            }
 
             var b = from bus in db.BusTable.ToList()
                     where bus.Id == k
                     select bus;
 
-            foreach (BusItem item in b)
+            BusItem item = b.FirstOrDefault();
+
+            if (item != null)
             {
                 Api2 api2 = new Api2(item.Id, item.Name);
                 api2.Response += new DB.Api2.ResponseDelegate(api2_Response);

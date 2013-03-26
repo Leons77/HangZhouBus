@@ -1,4 +1,5 @@
-﻿<phone:PhoneApplicationPage 
+﻿<local:BasePage
+    xmlns:local="clr-namespace:HangZhouBus"
     x:Class="HangZhouBus.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,11 +14,12 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    toolkit:TiltEffect.IsTiltEnabled="True">
-
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    xmlns:myControls="clr-namespace:WindowsPhoneUtil.UserControls;assembly=WindowsPhoneUtil" xmlns:my="clr-namespace:HangZhouBus">
+    
     <Grid Margin="25,0">
-        <TextBox Name="textBox" VerticalAlignment="Top" TextChanged="textBox_TextChanged" />
-        <ListBox Margin="0,80,0,0" Name="listBox" VerticalAlignment="Top">
+        <myControls:TextBoxControl x:Name="textBox" Hint="车名" Margin="0,40,0,0" VerticalAlignment="Top" BackgroudNoFocusBrush="#FFCECECE" BackgroudFocusBrush="White" IconImageSource="/HangZhouBus;component/Imgs/IconSearch.png" ButtonImageSource="/HangZhouBus;component/Imgs/IconX.png" HintForeground="#FF666666" TextForeground="Black" TextChanged="textBox_TextChanged" KeyDown="textBox_KeyDown" />
+        <ListBox Margin="0,110,0,0" Name="listBox" VerticalAlignment="Top" ManipulationStarted="listBox_ManipulationStarted" SelectionChanged="listBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" FontSize="30" Foreground="White" Margin="0,0,0,30"/>
@@ -26,4 +28,4 @@
         </ListBox>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</local:BasePage>

@@ -65,13 +65,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BasePage.cs" />
+    <Compile Include="BusLinePage.xaml.cs">
+      <DependentUpon>BusLinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DBBuildPage.xaml.cs">
       <DependentUpon>DBBuildPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DB\Api1.cs" />
     <Compile Include="DB\Api2.cs" />
+    <Compile Include="DB\Api3.cs" />
     <Compile Include="DB\BaseItem.cs" />
     <Compile Include="DB\DBBuild.cs" />
+    <Compile Include="GpsPage.xaml.cs">
+      <DependentUpon>GpsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -86,7 +94,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="BusLinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DBBuildPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GpsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,13 +125,15 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Imgs\IconX.png" />
+    <Resource Include="Imgs\IconSearch.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\dxy\wp7家庭用药\WindowsPhoneUtil\WindowsPhoneUtil\WindowsPhoneUtil.csproj">
+    <ProjectReference Include="D:\dxy\wp7家庭用药\WindowsPhoneUtil\WindowsPhoneUtil\WindowsPhoneUtil.csproj">
       <Project>{E7DC8F51-F8D3-46AF-BB4D-2933A7B99430}</Project>
       <Name>WindowsPhoneUtil</Name>
     </ProjectReference>

@@ -56,7 +56,7 @@ namespace HangZhouBus.DB
                 UpEndTime = upEndTime;
                 UpLong = upLong;
                 DownStartTime = downStartTime;
-                DownEndTime = downStartTime;
+                DownEndTime = downEndTime;
                 DownLong = downLong;
             }
         }
@@ -93,6 +93,13 @@ namespace HangZhouBus.DB
 
         void httpRequestHelper_Response(object sender, HttpRequestHelper.ResonseEventArgs e)
         {
+            //如果超时了就重新提交
+            if (e.Response == null)
+            {
+                Submit();
+                return;
+            }
+
             //去除所有标签
             string s = Regex.Replace(e.Response, @"<[^>]*>", string.Empty, RegexOptions.IgnoreCase).Replace("\r", "").Replace("\n", "").Replace(" ", "");
 

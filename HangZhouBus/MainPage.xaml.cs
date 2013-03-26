@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace HangZhouBus
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage : BasePage
     {
         private BusDataContext db = new BusDataContext();
         private object o = new object();
@@ -31,7 +31,19 @@ namespace HangZhouBus
         {
             base.OnNavigatedTo(e);
 
+            if (!IsInit)
+            {
+                Init();
+            }
+        }
+
+        protected override void Init()
+        {
+            base.Init();
+
             GetBusList(this);
+
+            //NavigationService.Navigate(new Uri("/DBBuildPage.xaml", UriKind.Relative));
         }
 
         private void GetBusList(object state)
@@ -39,7 +51,7 @@ namespace HangZhouBus
             lock (o)
             {
                 var list = from bus in db.BusTable.ToList()
-                           where bus.Name.IndexOf(textBox.Text) != -1
+                           where bus.Name.IndexOf(textBox.Text, StringComparison.OrdinalIgnoreCase) != -1
                            select bus;
 
                 Dispatcher.BeginInvoke(() =>
@@ -52,6 +64,37 @@ namespace HangZhouBus
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ThreadPool.QueueUserWorkItem(GetBusList);
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                listBox.Focus();
+            }
+        }
+
+        private void listBox_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            //获得当前的焦点对象
+            TextBox focus = FocusManager.GetFocusedElement() as TextBox;
+            if (focus != null)
+            {
+                ListBox listBox = sender as ListBox;
+                listBox.Focus();
+            }
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            BusItem item = listBox.SelectedItem as BusItem;
+
+            if (item != null)
+            {
+                NavigationService.Navigate(new Uri("/BusLinePage.xaml?Id=" + item.Id, UriKind.Relative));
+                listBox.SelectedIndex = -1;
+            }
         }
     }
 }
