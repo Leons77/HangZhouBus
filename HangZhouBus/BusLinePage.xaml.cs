@@ -98,11 +98,13 @@ namespace HangZhouBus
 
             foreach (ShowItem item in showList)
             {
-                foreach(string s in item.StopId)
+                var unSortStopList = from stop in db.StopTable.ToList()
+                                     where item.StopId.Contains(stop.Id.ToString())
+                                     select stop;
+
+                foreach (string s in item.StopId)
                 {
-                    StopItem stopItem = (from stop in db.StopTable.ToList()
-                                        where stop.Id == Convert.ToInt32(s)
-                                        select stop).FirstOrDefault();
+                    StopItem stopItem = unSortStopList.FirstOrDefault((i) => i.Id.ToString() == s);
 
                     if (stopItem != null)
                     {
@@ -141,10 +143,10 @@ namespace HangZhouBus
             ListBox listBox = sender as ListBox;
             StopItem item = listBox.SelectedItem as StopItem;
 
-
             if (item != null)
             {
                 NavigationService.Navigate(new Uri(string.Format("/GpsPage.xaml?OfficeId={0}&Type={1}&X={2}&Y={3}", busItem.OfficialId, listBox.Tag, item.X, item.Y), UriKind.Relative));
+                listBox.SelectedIndex = -1;
             }
         }
     }
